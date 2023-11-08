@@ -23,6 +23,9 @@ abstract class AbstractService extends BaseAbstractService implements ServiceInt
     /** @var null|UriInterface */
     protected $baseApiUri;
 
+    /** @var string */
+    protected $signatureMethod = 'HMAC-SHA1';
+
     /**
      * {@inheritdoc}
      */
@@ -274,7 +277,11 @@ abstract class AbstractService extends BaseAbstractService implements ServiceInt
      */
     protected function getSignatureMethod()
     {
-        return 'HMAC-SHA1';
+        return $this->signatureMethod;
+    }
+
+    protected function setSignatureMethod(string $method) {
+        $this->signatureMethod = $method;
     }
 
     /**
